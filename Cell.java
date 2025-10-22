@@ -1,7 +1,20 @@
 public class Cell
 {
-    public static void main(String[] args)
+    Player mark;
+
+    boolean isEmpty()
     {
-        System.out.println();
+        return false;
     }
+    
+    void setMark(Player p)
+    {
+        return;
+    }
+
+    Player getMark()
+    {
+        return mark;
+    }
+
 }
