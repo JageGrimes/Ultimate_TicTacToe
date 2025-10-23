@@ -1,18 +1,18 @@
 public class Cell
 {
-    Player mark;
+    public Player mark;
 
-    boolean isEmpty()
+    public boolean isEmpty()
     {
-        return false;
+        return mark.Symbol == ' ';
     }
     
-    void setMark(Player p)
+    public void setMark(Player p)
     {
-        return;
+        mark = p;
     }
 
-    Player getMark()
+    public Player getMark()
     {
         return mark;
     }

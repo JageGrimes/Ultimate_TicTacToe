@@ -1,8 +1,8 @@
 public class UltimateBoard
 {
-    MiniBoard[][] boards;
-    Player winner;
-    Position nextActiveBoard;
+    public MiniBoard[][] boards;
+    public Player winner;
+    public Position nextActiveBoard;
 
     public boolean makeMove(int bigRow, int bigCol, int smallRow, int smallCol, Player p)
     {
@@ -21,6 +21,6 @@ public class UltimateBoard
 
     public ArrayList<Move> getValidMoves()
     {
-        return null;
+        return false;
     }
 }

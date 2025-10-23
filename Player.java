@@ -1,5 +1,5 @@
 public class Player 
 {
-    String name;
-    Mark symbol;
+    public String name; // (computer or human)
+    public char symbol; // (X or O)
 }
