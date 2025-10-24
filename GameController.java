@@ -1,7 +1,12 @@
 public class GameController
 {
-    public UltimateBoard board
-    public Player currentPlayer
+    private UltimateBoard board;
+    private Player currentPlayer;
+
+    public static void main(String[] args)
+    {
+
+    }
 
     public void startGame()
     {
@@ -20,7 +25,7 @@ public class GameController
      * Play a turn (may change when computers added)
      * Ask and input where the player wants to play
     */
-    public void playTurn(...)
+    public void playTurn()
     {
 
     }
@@ -32,6 +37,4 @@ public class GameController
     {
         return false;
     }
-
-
 }
