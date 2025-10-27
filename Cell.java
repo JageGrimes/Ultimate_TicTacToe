@@ -1,12 +1,17 @@
 public class Cell
 {
-    public Player mark;
+    private Player mark;
+
+    public Cell()
+    {
+        mark = new Player(); // initalize an empty player (no name/char)
+    }
 
     public boolean isEmpty()
     {
-        return mark.Symbol == ' ';
+        return mark.getSymbol() == ' ';
     }
-    
+
     public void setMark(Player p)
     {
         mark = p;
@@ -17,4 +22,7 @@ public class Cell
         return mark;
     }
 
+    /*
+     * temp change
+     */
 }
