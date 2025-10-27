@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class GameController
 {
     private UltimateBoard board;
@@ -5,12 +7,16 @@ public class GameController
 
     public static void main(String[] args)
     {
-
+        Scanner kb = new Scanner(System.in);
+        
     }
 
+    /*
+     * ...
+     */
     public void startGame()
     {
-
+        board = new UltimateBoard();
     }
 
     /*
@@ -18,7 +24,14 @@ public class GameController
     */
     public void switchPlayer()
     {
-
+        if (currentPlayer.getSymbol() == 'X')
+        {
+            currentPlayer.setSymbol('O');
+        }
+        else
+        {
+            currentPlayer.setSymbol('X');
+        }
     }
 
     /*

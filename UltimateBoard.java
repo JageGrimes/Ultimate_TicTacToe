@@ -1,8 +1,18 @@
-public class UltimateBoard
+import java.util.ArrayList;
+
+public class UltimateBoard 
 {
-    public MiniBoard[][] boards;
-    public Player winner;
-    public Position nextActiveBoard;
+    private MiniBoard[][] boards;
+    private Player winner;
+    private String nextActiveBoard;
+
+    public UltimateBoard()
+    {
+        for(int i = 0; i < 9; i++)
+        {
+            boards[i/3][i%3] = new MiniBoard();
+        }
+    }
 
     public boolean makeMove(int bigRow, int bigCol, int smallRow, int smallCol, Player p)
     {
@@ -11,7 +21,7 @@ public class UltimateBoard
 
     public Player checkWinner()
     {
-        return null;
+        return winner;
     }
 
     public boolean isValid(int bigRow, int bigCol)
@@ -19,8 +29,8 @@ public class UltimateBoard
         return false;
     }
 
-    public ArrayList<Move> getValidMoves()
+    public ArrayList<String> getValidMoves()
     {
-        return false;
+        return null;
     }
 }

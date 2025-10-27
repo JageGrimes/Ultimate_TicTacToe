@@ -8,7 +8,6 @@ public class Player
         name = "empty";
         symbol = ' ';
     }
-
     public Player(String nick, char let)
     {
         this();

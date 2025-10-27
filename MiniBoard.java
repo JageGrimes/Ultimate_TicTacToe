@@ -1,21 +1,34 @@
-public class MiniBoard
-{
-    public Cell[][] cells;
-    public String position;
-    public Player winner;
+import java.util.ArrayList;
 
-    /*
-     * place the current player's character(X or O) at the position (row, col)
-    */
-    public boolean makeMove(int row, int col, Player p)
+public class MiniBoard 
+{
+    Cell[][] cells;
+    Player winner;
+
+    public MiniBoard()
     {
-        return false;
+        for(int i = 0; i < 9; i++)
+        {
+            cells[i/3][i%3] = new Cell();
+        }
     }
 
-    /*
-     * check all squares if there is a winner or a tie in the 3x3 small board
-    */
+    public void makeMove(int row, int col, Player p)
+    {
+
+    }
+
     public Player checkWinner()
+    {
+        return winner;
+    }
+
+    public boolean isFull()
+    {
+        return true;
+    }
+
+    public ArrayList<Object /* To Be Replaced */> getAvailableMoves()
     {
         return null;
     }
