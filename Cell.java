@@ -21,8 +21,4 @@ public class Cell
     {
         return mark;
     }
-
-    /*
-     * temp change
-     */
 }

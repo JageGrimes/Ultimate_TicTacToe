@@ -8,6 +8,11 @@ public class UltimateBoard
 
     public UltimateBoard()
     {
+        nextActiveBoard = "any";
+        
+        winner = new Player("empty", ' ');
+
+        boards = new MiniBoard[3][3];
         for(int i = 0; i < 9; i++)
         {
             boards[i/3][i%3] = new MiniBoard();
@@ -16,6 +21,11 @@ public class UltimateBoard
 
     public boolean makeMove(int bigRow, int bigCol, int smallRow, int smallCol, Player p)
     {
+        if(boards[bigRow][bigCol].makeMove(smallRow, smallCol, p))
+        {
+            nextActiveBoard = smallRow + " " + smallCol;
+            return true;
+        }
         return false;
     }
 
@@ -26,11 +36,21 @@ public class UltimateBoard
 
     public boolean isValid(int bigRow, int bigCol)
     {
-        return false;
+        return boards[bigRow][bigCol].checkWinner().getSymbol() == ' ';
     }
 
     public ArrayList<String> getValidMoves()
     {
-        return null;
+        ArrayList<String> moves = new ArrayList<>();
+
+        for(int i = 0; i < 9; i++)
+        {
+            if(boards[i/3][i%3].checkWinner().getSymbol() == ' ')
+            {
+                moves.add(i/3 + " " + i%3);
+            }
+        }
+
+        return moves;
     }
 }

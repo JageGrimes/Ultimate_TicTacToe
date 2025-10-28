@@ -8,7 +8,24 @@ public class GameController
     public static void main(String[] args)
     {
         Scanner kb = new Scanner(System.in);
-        
+
+        System.out.print("What is player one's name :: ");
+        String nameOne = kb.next();
+
+        System.out.println("What is player two's name :: ");
+        String nameTwo = kb.next();
+
+        Player one = new Player(nameOne, 'X');
+        Player two = new Player(nameTwo, 'O');
+
+        /*
+        startGame();
+
+        playTurn();
+
+        switchPlayer();
+        */
+
     }
 
     /*
@@ -16,22 +33,14 @@ public class GameController
      */
     public void startGame()
     {
-        board = new UltimateBoard();
     }
 
     /*
      * Change the current player to next player (X -> O || O -> X)
     */
-    public void switchPlayer()
+    public void switchPlayer(Player one, Player two)
     {
-        if (currentPlayer.getSymbol() == 'X')
-        {
-            currentPlayer.setSymbol('O');
-        }
-        else
-        {
-            currentPlayer.setSymbol('X');
-        }
+        currentPlayer = currentPlayer == one ? two : one;
     }
 
     /*
