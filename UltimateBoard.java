@@ -63,7 +63,7 @@ public class UltimateBoard
         for(int i = 0; i < 3; i++)
         {
             System.out.print(boards[i/3][i%3].checkWinner().getSymbol());
-            if(i%3 == 0)
+            if(i%3 == 0) 
             // ...
 
             if(i%3 == 0 && i != 0)
