@@ -5,11 +5,11 @@ public class MiniBoard
     Cell[][] cells;
     Player winner;
 
-    public MiniBoard()
+    public MiniBoard(int row, int col)
     {
         cells = new Cell[3][3];
 
-        winner = new Player("empty", ' ');
+        winner = new Player(row + " " + col, ' ');
         
         for(int i = 0; i < 9; i++)
         {
@@ -51,7 +51,7 @@ public class MiniBoard
      */
     public ArrayList<String> getAvailableMoves()
     {
-        ArrayList<String> moves = new ArrayList();
+        ArrayList<String> moves = new ArrayList<>();
 
         for(int i = 0; i < 9; i++)
         {
@@ -62,5 +62,22 @@ public class MiniBoard
         }
 
         return moves;
+    }
+
+    public void printBoard()
+    {
+        System.out.println("Small Board at " + winner.getName() + ":");
+        System.out.println();
+        System.out.println(getSymbol(cells[0][0]) + "|" + getSymbol(cells[0][1]) + "|" + getSymbol(cells[0][2]));
+        System.out.println("-----");
+        System.out.println(getSymbol(cells[1][0]) + "|" + getSymbol(cells[1][1]) + "|" + getSymbol(cells[1][2]));
+        System.out.println("-----");
+        System.out.println(getSymbol(cells[2][0]) + "|" + getSymbol(cells[2][1]) + "|" + getSymbol(cells[2][2]));
+
+    }
+    // helper method of printBoard
+    private String getSymbol(Cell cell)
+    {
+        return cell.getMark().getSymbol() + "";
     }
 }

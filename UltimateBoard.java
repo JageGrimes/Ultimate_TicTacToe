@@ -60,14 +60,18 @@ public class UltimateBoard
 
     public void printBoard()
     {
-        for(int i = 0; i < 3; i++)
-        {
-            System.out.print(boards[i/3][i%3].checkWinner().getSymbol());
-            if(i%3 == 0) 
-            // ...
+        System.out.println("Big Board:");
+        System.out.println();
+        System.out.println(getSymbol(boards[0][0]) + "|" + getSymbol(boards[0][1]) + "|" + getSymbol(boards[0][2]));
+        System.out.println("-----");
+        System.out.println(getSymbol(boards[1][0]) + "|" + getSymbol(boards[1][1]) + "|" + getSymbol(boards[1][2]));
+        System.out.println("-----");
+        System.out.println(getSymbol(boards[2][0]) + "|" + getSymbol(boards[2][1]) + "|" + getSymbol(boards[2][2]));
 
-            if(i%3 == 0 && i != 0)
-            System.out.println("_____"); // print 5 _
-        }
+    }
+    // helper method of printBoard
+    private String getSymbol(MiniBoard smallBoard)
+    {
+        return smallBoard.checkWinner().getSymbol() + "";
     }
 }
