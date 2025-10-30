@@ -40,7 +40,7 @@ public class UltimateBoard
         {
             return false;
         }
-        return boards[bigRow][bigCol].checkWinner().getSymbol() == ' ';
+        return boards[bigRow][bigCol].checkWinner().getSymbol() == ' '; 
     }
 
     public ArrayList<String> getValidMoves()
