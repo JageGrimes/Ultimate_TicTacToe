@@ -6,11 +6,16 @@ public class GameController
     private Player currentPlayer;
     private Player one, two;
 
-    public void main(String[] args)
+    public GameController()
     {
+
+    }
+    public static void main(String[] args)
+    {
+        GameController remote = new GameController();
         Scanner kb = new Scanner(System.in);
         
-        startGame(kb);
+        remote.startGame(kb);
     }
 
     /*
@@ -21,7 +26,7 @@ public class GameController
         System.out.print("What is player one's name :: ");
         String nameOne = kb.next();
 
-        System.out.println("What is player two's name :: ");
+        System.out.print("What is player two's name :: ");
         String nameTwo = kb.next();
 
         one = new Player(nameOne, 'X');
@@ -36,15 +41,15 @@ public class GameController
         do
         {
             System.out.println("where would you like to go on the Big Board");
-            System.out.print("(col row)(0-2)(EX: 2 1) :: ");
+            System.out.print("(col row)(0-2)(EX: 2 1) Seperate by space:: ");
             bigCol = kb.nextInt();
             bigRow = kb.nextInt();
-            isValid = !board.isValid(bigRow, bigCol);
+            isValid = board.isValid(bigRow, bigCol);
             if(!isValid)
             {
                 System.out.println("Something is wrong with that input, try again");
             }
-        }while(isValid);
+        }while(!isValid);
 
         do
         {
@@ -52,12 +57,12 @@ public class GameController
             System.out.print("(col row)(0-2)(EX: 2 1) :: ");
             smallCol = kb.nextInt();
             smallRow = kb.nextInt();
-            isValid = !(smallCol > 3 || smallCol < 0 || smallRow > 3 || smallRow < 0);
+            isValid = smallCol < 3 && smallCol >= 0 && smallRow < 3 && smallRow >= 0;
             if(!isValid)
             {
                 System.out.println("Something is wrong with that input, try again");
             }
-        }while(isValid);
+        }while(!isValid);
 
         board.makeMove(bigRow, bigCol, smallRow, smallCol, currentPlayer);
         switchPlayer(one, two);

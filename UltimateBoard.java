@@ -111,6 +111,8 @@ public class UltimateBoard
             }
         }
 
+        chop.close();
+
         return false;
     }
 }
