@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class UltimateBoard 
 {
@@ -69,9 +70,47 @@ public class UltimateBoard
         System.out.println(getSymbol(boards[2][0]) + "|" + getSymbol(boards[2][1]) + "|" + getSymbol(boards[2][2]));
 
     }
-    // helper method of printBoard
-    private String getSymbol(MiniBoard smallBoard)
+    // helper method
+    private char getSymbol(MiniBoard smallBoard)
     {
-        return smallBoard.checkWinner().getSymbol() + "";
+        return smallBoard.checkWinner().getSymbol();
+    }
+
+    public boolean isGameOver()
+    {
+        String multiDirection;
+        String temp = "";
+        String tempTwo = "";
+
+        // add diagonals
+        multiDirection = getSymbol(boards[0][0]) + "" + getSymbol(boards[1][1]) + "" + getSymbol(boards[2][2]) + " ";
+        multiDirection += getSymbol(boards[2][0]) + "" + getSymbol(boards[1][1]) + "" + getSymbol(boards[0][2]) + " ";
+
+        for(int i = 0; i < 9; i++)
+        {
+            temp += getSymbol(boards[i/3][i%3]);
+            tempTwo += getSymbol(boards[i%3][i/3]);
+
+            if(i%3 == 0 && i != 0)
+            {
+                multiDirection = temp + " " + tempTwo + " " + multiDirection;
+                temp = "";
+                tempTwo = "";
+            }
+        }
+
+        Scanner chop = new Scanner(multiDirection);
+
+        while(chop.hasNext())
+        {
+            String holder = chop.next();
+
+            if(holder.equals("XXX") || holder.equals("OOO"))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

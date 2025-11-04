@@ -76,8 +76,8 @@ public class MiniBoard
 
     }
     // helper method of printBoard
-    private String getSymbol(Cell cell)
+    private char getSymbol(Cell cell)
     {
-        return cell.getMark().getSymbol() + "";
+        return cell.getMark().getSymbol();
     }
 }

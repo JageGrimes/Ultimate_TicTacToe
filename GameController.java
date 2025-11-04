@@ -11,7 +11,6 @@ public class GameController
         Scanner kb = new Scanner(System.in);
         
         startGame(kb);
-
     }
 
     /*
