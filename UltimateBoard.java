@@ -9,7 +9,7 @@ public class UltimateBoard
 
     public UltimateBoard()
     {
-        nextActiveBoard = new MiniBoard(0, 0);
+        nextActiveBoard = null;
         
         winner = new Player("empty", ' ');
 
@@ -22,12 +22,16 @@ public class UltimateBoard
 
     public boolean makeMove(int bigRow, int bigCol, int smallRow, int smallCol, Player p)
     {
-        if(boards[bigRow][bigCol].makeMove(smallRow, smallCol, p))
+        if(nextActiveBoard == null)
         {
-            nextActiveBoard = boards[smallRow][smallCol];
-            return true;
+            nextActiveBoard = boards[bigRow][bigCol];
         }
-        return false;
+
+        nextActiveBoard.makeMove(smallCol, smallRow, p);
+
+        nextActiveBoard = boards[smallCol][smallRow];
+
+        return true;
     }
 
     public Player checkWinner()
@@ -57,6 +61,11 @@ public class UltimateBoard
         }
 
         return moves;
+    }
+
+    public MiniBoard getNextBoard()
+    {
+        return nextActiveBoard;
     }
 
     public void printBoard()
@@ -107,6 +116,7 @@ public class UltimateBoard
 
             if(holder.equals("XXX") || holder.equals("OOO"))
             {
+                chop.close();
                 return true;
             }
         }
