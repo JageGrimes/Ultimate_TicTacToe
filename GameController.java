@@ -31,7 +31,10 @@ public class GameController
 
         one = new Player(nameOne, 'X');
         two = new Player(nameTwo, 'O');
+      
+        //Need to initialize currentPlayer before it is called later.
         currentPlayer = one;
+
         board = new UltimateBoard();
 
         System.out.println(one.getName() + "'s turn!");
