@@ -117,7 +117,7 @@ public class GameController
             }while(!isValid);
 
             board.makeMove(-1, -1, smallRow, smallCol, currentPlayer);
-        }else
+        }else 
         {
             System.out.println("\nThe next board is full");
 
