@@ -6,16 +6,21 @@ public class GameController
     private Player currentPlayer;
     private Player one, two;
 
-    public GameController()
-    {
-
-    }
+    public GameController() {   } // help calling outside static main
     public static void main(String[] args)
     {
         GameController remote = new GameController();
+
         Scanner kb = new Scanner(System.in);
         
         remote.startGame(kb);
+
+        while(!remote.isGameOver())
+        {
+            remote.playTurn(kb);
+        }
+
+        kb.close();
     }
 
     /*
@@ -32,11 +37,15 @@ public class GameController
         one = new Player(nameOne, 'X');
         two = new Player(nameTwo, 'O');
 
+        currentPlayer = one;
+
         board = new UltimateBoard();
 
-        System.out.println(one.getName() + "'s turn!");
+        System.out.println(currentPlayer.getName() + "'s turn!");
         int bigCol, bigRow, smallCol, smallRow;
         boolean isValid = false;
+
+        board.printBoard();
 
         do
         {
@@ -50,6 +59,8 @@ public class GameController
                 System.out.println("Something is wrong with that input, try again");
             }
         }while(!isValid);
+
+        board.getNextBoard().printBoard();
 
         do
         {
@@ -65,15 +76,13 @@ public class GameController
         }while(!isValid);
 
         board.makeMove(bigRow, bigCol, smallRow, smallCol, currentPlayer);
-        switchPlayer(one, two);
-
-        kb.close();
+        switchPlayer();
     }
 
     /*
      * Change the current player to next player (X -> O || O -> X)
     */
-    public void switchPlayer(Player one, Player two)
+    public void switchPlayer()
     {
         currentPlayer = currentPlayer == one ? two : one;
     }
@@ -84,7 +93,7 @@ public class GameController
     */
     public void playTurn(Scanner kb)
     {
-        System.out.println(currentPlayer.getName() + "'s turn");
+        System.out.println("\n" + currentPlayer.getName() + "'s turn");
 
         // board.isValid(row of next board, col of next board)
         if(board.isValid(Integer.parseInt(board.getNextBoard().checkWinner().getName().substring(0, 1)), Integer.parseInt(board.getNextBoard().checkWinner().getName().substring(2))))
@@ -107,10 +116,10 @@ public class GameController
                 }
             }while(!isValid);
 
-            board.makeMove(-1, -1, smallCol, smallRow, currentPlayer);
+            board.makeMove(-1, -1, smallRow, smallCol, currentPlayer);
         }else
         {
-            System.out.println("The next board is full");
+            System.out.println("\nThe next board is full");
 
             int bigCol, bigRow, smallCol, smallRow;
             boolean isValid = false;
@@ -146,7 +155,7 @@ public class GameController
             board.makeMove(bigRow, bigCol, smallRow, smallCol, currentPlayer);
         }
 
-        switchPlayer(one, two);
+        switchPlayer();
     }
 
     /*
@@ -154,6 +163,6 @@ public class GameController
     */
     public boolean isGameOver()
     {
-        return board.checkWinner().getSymbol() == ' ';
+        return !(board.checkWinner().getSymbol() == ' ');
     }
 }

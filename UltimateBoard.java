@@ -22,14 +22,9 @@ public class UltimateBoard
 
     public boolean makeMove(int bigRow, int bigCol, int smallRow, int smallCol, Player p)
     {
-        if(nextActiveBoard == null)
-        {
-            nextActiveBoard = boards[bigRow][bigCol];
-        }
+        nextActiveBoard.makeMove(smallRow, smallCol, p);
 
-        nextActiveBoard.makeMove(smallCol, smallRow, p);
-
-        nextActiveBoard = boards[smallCol][smallRow];
+        nextActiveBoard = boards[smallRow][smallCol];
 
         return true;
     }
@@ -45,6 +40,8 @@ public class UltimateBoard
         {
             return false;
         }
+        nextActiveBoard = boards[bigRow][bigCol];
+
         return boards[bigRow][bigCol].checkWinner().getSymbol() == ' '; 
     }
 

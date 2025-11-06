@@ -10,7 +10,6 @@ public class Player
     }
     public Player(String nick, char let)
     {
-        this();
         setName(nick);
         setSymbol(let);
     }
