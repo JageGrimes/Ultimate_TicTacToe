@@ -40,9 +40,12 @@ public class UltimateBoard
         {
             return false;
         }
-        nextActiveBoard = boards[bigRow][bigCol];
+        if(!boards[bigRow][bigCol].isGameOver())
+        {
+            nextActiveBoard = boards[bigRow][bigCol];
+        }
 
-        return boards[bigRow][bigCol].checkWinner().getSymbol() == ' '; 
+        return boards[bigRow][bigCol].checkWinner().getSymbol() == ' ';
     }
 
     public ArrayList<String> getValidMoves()
@@ -111,11 +114,18 @@ public class UltimateBoard
         {
             String holder = chop.next();
 
-            if(holder.equals("XXX") || holder.equals("OOO"))
+            if(holder.equals("XXX"))
             {
-                chop.close();
-                return true;
+                winner.setSymbol('X');
+            }else if (holder.equals("OOO")) 
+            {
+                winner.setSymbol('O');
+            }else
+            {
+                continue;
             }
+            chop.close();
+            return true;
         }
 
         chop.close();

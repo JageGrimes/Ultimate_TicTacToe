@@ -97,6 +97,28 @@ public class GameController
 
         // board.isValid(row of next board, col of next board)
         if(board.isValid(Integer.parseInt(board.getNextBoard().checkWinner().getName().substring(0, 1)), Integer.parseInt(board.getNextBoard().checkWinner().getName().substring(2))))
+        {
+            System.out.println("\nThe next board is full");
+            int bigCol, bigRow;
+            boolean isValid = false;
+
+            board.printBoard();
+
+            do
+            {
+                System.out.println("where would you like to go on the Big Board");
+                System.out.print("(col row)(0-2)(EX: 2 1) Seperate by space:: ");
+                bigCol = kb.nextInt();
+                bigRow = kb.nextInt();
+                isValid = board.isValid(bigRow, bigCol);
+                if(!isValid)
+                {
+                    System.out.println("Something is wrong with that input, try again");
+                }
+            }while(!isValid);
+        }
+
+        if(true)
         {   
             board.getNextBoard().printBoard();
 
@@ -117,42 +139,6 @@ public class GameController
             }while(!isValid);
 
             board.makeMove(-1, -1, smallRow, smallCol, currentPlayer);
-        }else 
-        {
-            System.out.println("\nThe next board is full");
-
-            int bigCol, bigRow, smallCol, smallRow;
-            boolean isValid = false;
-
-            board.printBoard();
-
-            do
-            {
-                System.out.println("where would you like to go on the Big Board");
-                System.out.print("(col row)(0-2)(EX: 2 1) Seperate by space:: ");
-                bigCol = kb.nextInt();
-                bigRow = kb.nextInt();
-                isValid = board.isValid(bigRow, bigCol);
-                if(!isValid)
-                {
-                    System.out.println("Something is wrong with that input, try again");
-                }
-            }while(!isValid);
-
-            do
-            {
-                System.out.println("where would you like to go on the Mini Board");
-                System.out.print("(col row)(0-2)(EX: 2 1) :: ");
-                smallCol = kb.nextInt();
-                smallRow = kb.nextInt();
-                isValid = smallCol < 3 && smallCol >= 0 && smallRow < 3 && smallRow >= 0;
-                if(!isValid)
-                {
-                    System.out.println("Something is wrong with that input, try again");
-                }
-            }while(!isValid);
-
-            board.makeMove(bigRow, bigCol, smallRow, smallCol, currentPlayer);
         }
 
         switchPlayer();

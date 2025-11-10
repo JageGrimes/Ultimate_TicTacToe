@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MiniBoard 
 {
@@ -80,4 +81,52 @@ public class MiniBoard
     {
         return cell.getMark().getSymbol();
     }
+
+    public boolean isGameOver()
+    {
+        String multiDirection;
+        String temp = "";
+        String tempTwo = "";
+
+        // add diagonals
+        multiDirection = getSymbol(cells[0][0]) + "" + getSymbol(cells[1][1]) + "" + getSymbol(cells[2][2]) + " ";
+        multiDirection += getSymbol(cells[2][0]) + "" + getSymbol(cells[1][1]) + "" + getSymbol(cells[0][2]) + " ";
+
+        for(int i = 0; i < 9; i++)
+        {
+            temp += getSymbol(cells[i/3][i%3]);
+            tempTwo += getSymbol(cells[i%3][i/3]);
+
+            if(i%3 == 0 && i != 0)
+            {
+                multiDirection = temp + " " + tempTwo + " " + multiDirection;
+                temp = "";
+                tempTwo = "";
+            }
+        }
+
+        Scanner chop = new Scanner(multiDirection);
+
+        while(chop.hasNext())
+        {
+            String holder = chop.next();
+
+            if(holder.equals("XXX"))
+            {
+                winner.setSymbol('X');
+            }else if (holder.equals("OOO")) 
+            {
+                winner.setSymbol('O');
+            }else
+            {
+                continue;
+            }
+            chop.close();
+            return true;
+        }
+
+        chop.close();
+        return false || isFull(8);
+    }
 }
+
