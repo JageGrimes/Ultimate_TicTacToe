@@ -29,7 +29,7 @@ public class Player
         return name;
     }
 
-    public char getSymbol()
+    public char getSymbol() 
     {
         return symbol;
     }

@@ -34,7 +34,7 @@ public class GameController
     public void startGame(Scanner kb)
     {
         System.out.print("What is player one's name :: ");
-        String nameOne = kb.next();
+        String nameOne = kb.next(); 
 
         System.out.print("What is player two's name :: ");
         String nameTwo = kb.next();

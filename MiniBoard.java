@@ -58,7 +58,7 @@ public class MiniBoard
         {
             if(cells[i/3][i%3].getMark().getSymbol() == ' ')
             {
-                moves.add(i/3 + " " + i%3);
+                moves.add(i/3 + " " + i%3); 
             }
         }
 

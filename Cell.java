@@ -17,7 +17,7 @@ public class Cell
         mark = p;
     }
 
-    public Player getMark()
+    public Player getMark() 
     {
         return mark;
     }
