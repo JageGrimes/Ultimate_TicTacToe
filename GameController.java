@@ -21,6 +21,11 @@ public class GameController
         }
 
         kb.close();
+
+        remote.switchPlayer();
+
+        System.out.println("Game Over");
+        System.out.println("Player " + remote.currentPlayer.getName() + " Wins!");
     }
 
     /*
@@ -36,9 +41,6 @@ public class GameController
 
         one = new Player(nameOne, 'X');
         two = new Player(nameTwo, 'O');
-      
-        //Need to initialize currentPlayer before it is called later.
-        currentPlayer = one;
 
         currentPlayer = one;
 
@@ -99,7 +101,7 @@ public class GameController
         System.out.println("\n" + currentPlayer.getName() + "'s turn");
 
         // board.isValid(row of next board, col of next board)
-        if(board.isValid(Integer.parseInt(board.getNextBoard().checkWinner().getName().substring(0, 1)), Integer.parseInt(board.getNextBoard().checkWinner().getName().substring(2))))
+        if(!board.isValid(Integer.parseInt(board.getNextBoard().checkWinner().getName().substring(0, 1)), Integer.parseInt(board.getNextBoard().checkWinner().getName().substring(2))))
         {
             System.out.println("\nThe next board is full");
             int bigCol, bigRow;

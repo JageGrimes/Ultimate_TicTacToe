@@ -26,6 +26,8 @@ public class UltimateBoard
 
         nextActiveBoard = boards[smallRow][smallCol];
 
+        isGameOver();
+
         return true;
     }
 
