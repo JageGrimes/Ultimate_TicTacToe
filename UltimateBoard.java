@@ -132,6 +132,57 @@ public class UltimateBoard
 
         chop.close();
 
+        if(getValidMoves().size() == 0)
+        {
+            winner.setSymbol('-'); // full
+            return true;
+        }
+
         return false;
+    }
+
+    public int[] evaluateBoard() throws Error
+    {
+        if(isGameOver())
+        {
+            switch(winner.getSymbol())
+            {
+                case 'X' : return new int[]{2147000000, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+                case 'O' : return new int[]{-2147000000, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+                case '-' : return new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+                default : throw new Error("Something is out of place");
+            }
+        }
+
+        int[] returnArr = new int[10]; // index 0 is big board 1 - 9 is small boards
+        int count_X = 0;
+        int count_O = 0;
+
+        int i = 0;
+        for(MiniBoard[] row : boards)
+        {
+            for(MiniBoard temp : row)
+            {
+                i++;
+                switch(temp.checkWinner().getSymbol())
+                {
+                    case 'X' : ;
+                        break;
+                    case 'O' : count_O++;
+                        break;
+                    case 'T' :  count_O += 0;
+                                count_X += 0;
+                        break;
+                    case ' ' :
+                        returnArr[i+1] = temp.evaluateBoard();
+                        break;
+
+                }
+            }
+        }
+
+        returnArr[0] = count_X - count_O;
+
+        return returnArr;
     }
 } 

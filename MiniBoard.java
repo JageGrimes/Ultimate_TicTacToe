@@ -128,5 +128,28 @@ public class MiniBoard
         chop.close();
         return false || isFull(8);
     }
+
+    public int evaluateBoard()
+    {
+        int count_X = 0;
+        int count_O = 0;
+        for(Cell[] row : cells )
+        {
+            for(Cell cell : row)
+            {
+                switch(cell.getMark().getSymbol())
+                {
+                    case 'X' : count_X++;
+                        break;
+                    case 'O' : count_O++;
+                        break;
+                    case ' ' : count_O += 0; // add 0, neither
+                               count_X += 0; // add 0, neither
+                }
+            }
+        }
+
+        return count_X - count_O;
+    }
 }
 
