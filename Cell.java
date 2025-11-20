@@ -7,6 +7,7 @@ public class Cell
         mark = new Player(); // initalize an empty player (no name/char)
     }
 
+    // redundant/not used
     public boolean isEmpty()
     {
         return mark.getSymbol() == ' ';

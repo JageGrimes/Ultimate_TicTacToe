@@ -48,7 +48,7 @@ public class MiniBoard
     }
 
     /*
-     * loop through all cells, add all "cordinates" of empty spaces
+     * loop through all cells, add all "cordinates" of empty spaces to an arrayList
      */
     public ArrayList<String> getAvailableMoves()
     {
@@ -65,6 +65,7 @@ public class MiniBoard
         return moves;
     }
 
+    // prints board location(row, col)
     public void printBoard()
     {
         System.out.println("Small Board at " + winner.getName() + ":");
@@ -82,6 +83,7 @@ public class MiniBoard
         return cell.getMark().getSymbol();
     }
 
+    // add the row, col, and diagonals into a string. String is chooped into sections of 3 to check 3 in a row winning
     public boolean isGameOver()
     {
         String multiDirection;
@@ -129,6 +131,8 @@ public class MiniBoard
         return false || isFull(8);
     }
 
+    //does not check if game is won as it is called when the game is not over
+    // count how many X's and O's and return the difference.
     public int evaluateBoard()
     {
         int count_X = 0;

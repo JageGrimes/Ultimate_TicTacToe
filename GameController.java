@@ -29,7 +29,7 @@ public class GameController
     }
 
     /*
-     * ...
+     * Ask for player one and two's names and ask where player one want sto go from big board to small board
      */
     public void startGame(Scanner kb)
     {
@@ -103,6 +103,7 @@ public class GameController
         // board.isValid(row of next board, col of next board)
         if(!board.isValid(Integer.parseInt(board.getNextBoard().checkWinner().getName().substring(0, 1)), Integer.parseInt(board.getNextBoard().checkWinner().getName().substring(2))))
         {
+            //allow the player to go anywhere within the big board
             System.out.println("\nThe next board is full");
             int bigCol, bigRow;
             boolean isValid = false;
@@ -123,7 +124,7 @@ public class GameController
             }while(!isValid);
         }
 
-        if(true)
+        if(true) // redundtant but seperates variables
         {   
             board.getNextBoard().printBoard();
 
@@ -143,7 +144,7 @@ public class GameController
                 }
             }while(!isValid);
 
-            board.makeMove(-1, -1, smallRow, smallCol, currentPlayer);
+            board.makeMove(-1, -1, smallRow, smallCol, currentPlayer); // -1 means its not changing big board
         }
 
         switchPlayer();
@@ -154,6 +155,7 @@ public class GameController
     */
     public boolean isGameOver()
     {
+        // bigboard -> winner object -> see if they have a symbol representing a winner
         return !(board.checkWinner().getSymbol() == ' ');
     }
 }
