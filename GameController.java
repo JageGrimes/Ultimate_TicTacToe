@@ -12,8 +12,11 @@ public class GameController
         GameController remote = new GameController();
 
         Scanner kb = new Scanner(System.in);
-        
-        remote.startGame(kb);
+
+        System.out.print("Are you playing against a bot? (Y/N)");
+        char hasComputer = kb.next().toUpperCase().charAt(0);
+
+        remote.startGame(kb, hasComputer == 'Y');
 
         while(!remote.isGameOver())
         {
@@ -31,13 +34,30 @@ public class GameController
     /*
      * Ask for player one and two's names and ask where player one want sto go from big board to small board
      */
-    public void startGame(Scanner kb)
+    public void startGame(Scanner kb, boolean hasComputer)
     {
-        System.out.print("What is player one's name :: ");
+        System.out.print("What is player's name :: ");
         String nameOne = kb.next(); 
+        String nameTwo;
+        boolean goFirst = false;
+        if(!hasComputer)
+        {
+            System.out.print("What is player two's name :: ");
+            nameTwo = kb.next();
+        }else
+        {
+            System.out.print("Do you want to go first");
+            goFirst = 'Y' == kb.next().toUpperCase().charAt(0);
 
-        System.out.print("What is player two's name :: ");
-        String nameTwo = kb.next();
+            if(goFirst)
+            {
+                nameTwo = "Computer";
+            }else
+            {
+                nameTwo = nameOne;
+                nameOne = "Computer";
+            }
+        }
 
         one = new Player(nameOne, 'X');
         two = new Player(nameTwo, 'O');
@@ -45,6 +65,15 @@ public class GameController
         currentPlayer = one;
 
         board = new UltimateBoard();
+
+        if(currentPlayer.getName().equals("Computer"))
+        {
+            int max = Integer.MIN_VALUE;
+            for(String bigBoardMoves : board.getValidMoves())
+            {
+                //TODO: minMax call and evaluation
+            }
+        }
 
         System.out.println(currentPlayer.getName() + "'s turn!");
         int bigCol, bigRow, smallCol, smallRow;
@@ -156,6 +185,6 @@ public class GameController
     public boolean isGameOver()
     {
         // bigboard -> winner object -> see if they have a symbol representing a winner
-        return !(board.checkWinner().getSymbol() == ' ');
+        return board.isGameOver();
     }
 }

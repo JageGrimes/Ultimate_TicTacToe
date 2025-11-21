@@ -141,48 +141,34 @@ public class UltimateBoard
         return false;
     }
 
-    public int[] evaluateBoard() throws Error
+    /*
+     * count all winners of small boards and subtract the difference between X and O
+     * also add in how many small X and small O are on the un won board(not ties)
+     */
+    public double evaluateBoard()
     {
-        if(isGameOver())
-        {
-            switch(winner.getSymbol())
-            {
-                case 'X' : return new int[]{2147000000, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-                case 'O' : return new int[]{-2147000000, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-                case '-' : return new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-                default : throw new Error("Something is out of place");
-            }
-        }
-
-        int[] returnArr = new int[10]; // index 0 is big board 1 - 9 is small boards
         int count_X = 0;
         int count_O = 0;
-
-        int i = 0;
         for(MiniBoard[] row : boards)
         {
             for(MiniBoard temp : row)
             {
-                i++;
                 switch(temp.checkWinner().getSymbol())
                 {
-                    case 'X' : ;
+                    case 'X' : count_X++;
                         break;
                     case 'O' : count_O++;
                         break;
                     case 'T' :  count_O += 0;
                                 count_X += 0;
                         break;
-                    case ' ' :
-                        returnArr[i+1] = temp.evaluateBoard();
+                    case ' ' :  count_O += temp.countX_O(false);// only count O
+                                count_X += temp.countX_O(true);// only count X
                         break;
 
                 }
             }
         }
-
-        returnArr[0] = count_X - count_O;
-
-        return returnArr;
+        return count_X - count_O;
     }
 } 

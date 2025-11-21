@@ -133,7 +133,7 @@ public class MiniBoard
 
     //does not check if game is won as it is called when the game is not over
     // count how many X's and O's and return the difference.
-    public int evaluateBoard()
+    public double countX_O(boolean X_O)
     {
         int count_X = 0;
         int count_O = 0;
@@ -153,7 +153,7 @@ public class MiniBoard
             }
         }
 
-        return count_X - count_O;
+        return X_O ? count_X/10.0 : count_O/10.0;
     }
 }
 
